@@ -1,5 +1,5 @@
 import React from "react";
-// répresent les colonnes de la page d'accueil
+
 const FeatureItem = ({ imgSrc, imgAlt, title, description }) => {
   return (
     <div className="feature-item">

@@ -2,16 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProfileApi, updateUsername } from "../profile/userAPI";
 
 // L'asyncThunk (`fetchUserProfile`) effectue un appel API pour récupérer le profil de l'utilisateur en utilisant le token stocké dans l'état de l'authentification.
-// the authentication token is retived from the Redux store.
-//
-// Il vérifie d'abord si l'utilisateur est connecté en récupérant le token de `getState()`.
-// En cas de succès, il met à jour l'état avec les informations du profil.
-// En cas d'échec, il renvoie un message d'erreur.
+// fais un appel POST à /user/profile (backend)
 
-// L'asyncThunk (`changeUsername`) permet de modifier le nom d'utilisateur en envoyant une requête PUT avec le nouveau nom et le token.
-// Si l'appel API réussit, il met à jour le nom d'utilisateur dans l'état.
-// Le reducer met à jour l'état en fonction du cycle de vie de chaque appel API (en attente, réussi ou rejeté).
-// En cas de rejet, l'état `error` est mis à jour avec l'erreur renvoyée par l'appel API.
+//  récupères le token stocké dans authSlice avec getState()
+
+//  ajoutes ce token dans le header Authorization: Bearer <token>
+
+// récupères la réponse (JSON avec les infos de l’utilisateur)
+
 
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchProfile",
@@ -31,7 +29,7 @@ export const changeUsername = createAsyncThunk(
     try {
       const token = getState().auth.token;
       await updateUsername(token, newUsername);
-      return newUsername; // Update Redux state after successful API call
+      return newUsername; // update redux
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -73,5 +71,10 @@ const userSlice = createSlice({
       });
   },
 });
+
+
+// gères 3 états possibles : pending, fulfilled, rejected
+
+// Quand la requête réussit,mets les infos utilisateur dans userInfo
 
 export default userSlice.reducer;

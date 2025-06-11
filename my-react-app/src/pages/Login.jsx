@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Define state for form inputs
+  // Definei state for form inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -21,7 +21,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormError(""); // Reset previous local error
+    setFormError(""); // 
 
     if (!email || !password) {
       setFormError("Veuillez entrer votre email et votre mot de passe.");

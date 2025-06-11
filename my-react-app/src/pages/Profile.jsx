@@ -24,7 +24,8 @@ const Profile = () => {
 
   useEffect(() => {
     if (!profile && token) {
-      dispatch(fetchUserProfile());
+      dispatch(fetchUserProfile()); //useEffect permet de déclencher une action quand la page se charge
+                                     //appelles dispatch(fetchUserProfile()) → ça lance la requête à l’API
     }
   }, [dispatch, profile, token]);
 

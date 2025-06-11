@@ -7,7 +7,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Get authentication state from Redux store
+  // Get authentication state du Redux store
   const { token } = useSelector((state) => state.auth);
   const isAuthenticated = !!token; // isAuthenticated devient vrai si un token existe.
   const { profile } = useSelector((state) => state.user);
